@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test Results</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #30d5c8;
+        }
+
+        h3 {
+            color: red;
+        }
+
+        .results-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: auto;
+            max-width: 95%;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        table:hover {
+            transform: scale(1.02);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .correct { color: green; }
+        .wrong { color: red; }
+        .highlight { font-weight: bold; }
+
+        button {
+            background-color: #388E3C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        nav {
+            background-color: black;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #388E3C;
+        }
+        .untouched { color: gray; font-style: italic; }
+    </style>
+</head>
+<body>
+    <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" height="100px" width="300PX">
+    <img src="Typing boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="exercises.html">Exercises</a></li>
+            <li><a href="SpeedTest/index.html">Speed Test</a></li>
+        </ul>
+    </nav>
+    <div style="background-image:url('type.png'); float:left; background-repeat:no-repeat;" class="results-container">
+       <h1>Typing Test Results</h1>
+        <p id="congratulations"></p>
+        <div id="results"></div>
+        <button onclick="window.location.href='exercises.html'">Try Another Test</button>
+    </div>
+
+   <script>
+    // Function to highlight typed words only
+    function highlightTypedText(originalArray, typedArray) {
+        return typedArray.map((typedWord, i) => {
+            const originalWord = originalArray[i] || '';
+            if (originalWord === typedWord) {
+                return `<span class="correct">${typedWord}</span>`;
+            } else {
+                return `<span class="wrong">${typedWord}</span>`;
+            }
+        }).join(' ');
+    }
+
+    // Function to display results
+    function displayResults() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const originalText = decodeURIComponent(urlParams.get('exercise')); // Get the original exercise text
+        const typedWords = JSON.parse(decodeURIComponent(urlParams.get('typedWords'))); // Get the typed words
+        
+        const correctCount = parseInt(urlParams.get('correctCount'));
+        const wrongCount = parseInt(urlParams.get('wrongCount'));
+        const typingSpeed = parseInt(urlParams.get('typingSpeed'));
+        const accuracy = parseFloat(urlParams.get('accuracy'));
+        const correctChars = parseInt(urlParams.get('correctChars'));
+        const wrongChars = parseInt(urlParams.get('wrongChars'));
+        const backspaceCount = parseInt(urlParams.get('backspaceCount'));
+        const elapsedTime = parseInt(urlParams.get('elapsedTime')); // Get elapsed time
+
+        // Prepare results display
+        let resultsHTML = `<table>
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align:center"> TEST SUMMARY</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gross Characters: </td> <td class="highlight">${correctChars + correctCount + wrongCount}<br> (Means ${correctChars + correctCount + wrongCount}/5= Approx ${(correctChars + correctCount + wrongCount)/5} Words)</td>
+                    <td>Wrong Words:</td> <td class="highlight">${wrongCount}</td>
+                </tr>
+                <tr>
+                    <td>Net Characters:</td> <td class="highlight">${(correctChars + correctCount + wrongCount)-wrongCount*5}</td>
+                    <td>Wrong Characters:</td> <td class="highlight">${wrongCount * 5}</td>
+                </tr>
+                <tr>
+                    <td>As Per PSSSB Instruction <br><mark>used 10 Minute to calculating Gross Speed</mark>:</td> <td class="highlight">${(((correctChars + correctCount + wrongChars)/5) / 10).toFixed(1)} WPM</td>
+                    <td>Actual Gross Speed:</td> <td class="highlight"><i style="color:Blue;">${(((correctChars + correctCount + wrongChars)/5)/(elapsedTime/60)).toFixed(0)} WPM</i></td>
+                </tr>	
+                <tr>
+                    <td>Accuracy:</td>
+                    <td class="highlight">${((correctChars / (correctChars + wrongChars)) * 100).toFixed(2)}%</td>
+                </tr>
+                <tr>
+                    <td>Backspace Used:</td> <td class="highlight">${backspaceCount}</td>
+                    <td> Time Taken:</td> <td class="highlight">${Math.floor(elapsedTime / 60)} minutes ${elapsedTime % 60} seconds</td>
+                </tr>
+            </tbody>
+        </table>`;
+
+        // Chunk Comparison Section
+        resultsHTML += `<h1>Chunk Comparison</h1>
+                        <table>
+                            <tr>
+                                <th width="4%">Chunk No</th>
+                                <th  width="48%">Original Chunk</th>
+                                <th  width="48%">Typed Chunk</th>
+                            </tr>`;
+
+        // Display the original chunk and typed text
+        const originalChunk = originalText.split(" "); // Split the original text into words
+        const typedChunk = typedWords.join(" ").split(" "); // Join typed words and split into an array
+
+        // Process chunks of 10
+        const chunkSize = Math.ceil(originalChunk.length / 10); // Calculate size of each chunk
+        for (let i = 0; i < Math.max(originalChunk.length, typedChunk.length); i += chunkSize) {
+            const originalSlice = originalChunk.slice(i, i + chunkSize);
+            const typedSlice = typedChunk.slice(i, i + chunkSize);
+            resultsHTML += `<tr>
+                                <td>${Math.floor(i / chunkSize) + 1}</td>
+                                <td>${originalSlice.join(' ')}</td> <!-- Original words without highlighting -->
+                                <td>${highlightTypedText(originalSlice, typedSlice)}</td> <!-- Highlighted typed words -->
+                            </tr>`;
+        }
+
+        resultsHTML += `</table>`;
+        document.getElementById('results').innerHTML = resultsHTML;
+
+        // Check if the test is passed
+        if ((((correctChars + wrongChars) / 5) * (60 * 10) / 10) / 10 >= 5 && accuracy >= 92 && (typingSpeed / 10).toFixed(1) >= 30) {
+            document.getElementById('congratulations').innerHTML = `<h2>Congratulations! You have passed the test with ${accuracy.toFixed(2)}% accuracy and a speed of ${(typingSpeed / 10).toFixed(1)} WPM!</h2>`;
+        } else {
+            document.getElementById('congratulations').innerHTML = "<h3> Sorry, You've failed this test. Please Try Again </h3>"; // Clear the message if not passed
+        }
+    }
+
+    // Call displayResults when the page loads
+    displayResults();
+    // Disable specific keyboard shortcuts
+    document.addEventListener('keydown', function(event) {
+        // Disable Ctrl key
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+
+        // Disable Ctrl + U
+        if (event.ctrlKey && event.key === 'u') {
+            event.preventDefault();
+        }
+
+        // Disable Ctrl + C
+        if (event.ctrlKey && event.key === 'c') {
+            event.preventDefault();
+        }
+        // Disable Ctrl + P
+        if (event.ctrlKey && event.key === 'p') {
+            event.preventDefault();
+        }
+        // Disable F12
+        if (event.key === 'F12') {
+            event.preventDefault();
+        }
+    });
+    // Disable right-click and specific keyboard shortcuts
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>
