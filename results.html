@@ -230,7 +230,7 @@
         document.getElementById('results').innerHTML = resultsHTML;
 
     // Check if the test is passed
-        if (((((correctChars + correctCount + wrongChars)/5) / 10).toFixed(1))  >= 30 && accuracy >= 92) {
+        if (((((correctChars + correctCount + wrongChars)/5) / 10).toFixed(1))  >= 30 && accuracy >= 92 && wrongCount<=24) {
             document.getElementById('congratulations').innerHTML = `<h2>Congratulations! You have passed the test </h2>`;
         } else {
             document.getElementById('congratulations').innerHTML = "<h3> Sorry, You've failed this test. Please Try Again </h3>"; // Clear the message if not passed
