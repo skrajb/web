@@ -1,0 +1,201 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+}
+
+h1 {
+    color: #4CAF50;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.curved {
+    font-size: 24px;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+p.curved {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    white-space: pre-line;
+    line-height: 1.6;
+    font-size: 24px;
+}
+
+textarea.curved {
+    border: 2px solid #42a5f5;
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 10px;
+    font-size: 24px;
+    resize: none;
+}
+
+textarea.curved:focus {
+    outline: none;
+    border-color: #0d47a1;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #388E3C;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggle-container label {
+    cursor: pointer;
+}
+
+#test_text_container {
+    border: 2px dashed #42a5f5;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: auto;
+    text-align: center;
+    line-height: 10px;
+}
+
+.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.incorrect {
+    
+    
+}
+
+#test_text {
+    white-space: nowrap;
+    overflow: auto;
+    word-wrap: normal;
+    display: inline-block;
+}
+
+/* Results Styling */
+.results-container {
+   
+}
+
+.results-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.results-item {
+    font-size: 18px;
+    margin: 2px 0;
+}
+
+.results-item span {
+    font-weight: bold;
+}
+
+.correct-count {
+    color: #4CAF50;
+}
+
+.incorrect-count {
+    color: 
+}
+
+.accuracy {
+    color: #2196F3;
+}
+
+.results-footer {
+    font-size: 16px;
+    color: #999999;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Dark mode styling for results */
+.dark-mode .results-container {
+    background-color: #2c3e50;
+    border-color: #2980b9;
+}
+
+.dark-mode .results-header {
+    color: #2980b9;
+}
+
+.dark-mode .correct-count {
+    color: #16a085;
+}
+
+.dark-mode .incorrect-count {
+    color: #e74c3c;
+}
+
+.dark-mode .accuracy {
+    color: #3498db;
+}
+
+/* Light and Dark Mode Toggle Image */
+#mode_toggle_img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.dark-mode #mode_toggle_img {
+    content: url('https://img.icons8.com/ios-filled/50/ffffff/sun.png');
+}
+
+/* Light Mode */
+#mode_toggle_img.light-mode {
+    content: url('https://img.icons8.com/ios-filled/50/000000/moon.png');
+}
+#live_accuracy_text {
+    transition: color 0.5s ease;
+}
+
+#accuracy_bar {
+    transition: width 0.5s ease;
+}
+.highlight {
+    background-color: yellow; /* Change this to your desired highlight color */
+    font-weight: bold; /* Optional: make the highlighted word bold */
+}
+.current {
+    background-color: yellow; /* Highlight color for the current word */
+}
+
+.correct {
+    color: green; /* Color for correct words */
+}
+
+.incorrect {
+    color: ; /* Color for incorrect words */
+}

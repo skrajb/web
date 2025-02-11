@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <link rel="stylesheet" href="styles.css">
+	<style>
+	.back{
+	background-color:white;
+	border-radius:20px;}
+	 nav {
+            background-color: black;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: left;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #388E3C;
+        }
+	</style>
+</head>
+<body  style="background-image:url('backimage.jpg');background-size:cover; Font-family:Bookman Old Style">
+    <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;"  height="100px" width="300PX">	
+	<nav>
+        <ul>
+            <li><a href="../Home.html">Home</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+			<li><a href="index.html">Speed Test</a></li>
+        </ul>
+    </nav>
+	
+	<br>
+	
+	
+	
+	
+  
+	<table  cellpadding="23">	
+	<tr><td  class="back">
+	  <table   cellpadding="3" width="100%">
+ 
+	<tr style="background-color:white; border-radius:20px;"><th>
+    <b>
+        <label for="timer">Set Timer:</label>
+        <select id="timer">
+            <option value="60">1 minute</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+            <option value="600">10 minutes</option>
+        </select></th><th>
+        <p>Time Remaining: <span id="time_remaining">-</span></p>
+    </b> 
+            <!--<img id="mode_toggle_img" src="https://img.icons8.com/ios-filled/50/000000/moon.png" alt="toggle mode" />-->
+        </th>
+	</tr><tr><td>
+    <label for="backspace_toggle">
+        <input type="checkbox" id="backspace_toggle" checked>
+        <b>Allow Backspace</b>
+    </label></td>
+	<th>
+    <label for="highlight_toggle">
+        <input type="checkbox" id="highlight_toggle" checked>
+        Highlight Correct/Incorrect Words</b>
+    </label></th>
+	<tr><th colspan="3"><div id="live_results"></div></th></table></td><td rowspan="2" style="vertical-align:top;">  <div id="results" class="results-container">
+                    <!-- Results will appear here after test completion -->
+                </div>
+	<tr>
+            <td>
+                <div id="test_text_container" style="width: 100%;">
+                    <b></b><p class="curved" id="test_text">Loading...</p></b>
+                </div>
+                <textarea id="typed_text" class="curved" style="width: 100%; font-family:Bookman old Style" placeholder="Start typing here..." wrap="soft"></textarea>
+					<button STYLE="background-color:#007bff;float:right;" onclick="refreshPage()">Restart Test</button>
+            </td>
+        
+        </tr>
+	<tr>
+		<td style="float:right"> </td>
+		
+    </table>
+    <script src="script.js">
+	    
+	    </script>
+	<footer style="color:white;font-weight:bold;text-align:center;">© Smartech Education Computer Institute, 2009<br> Unauthorized use and/or duplication of this material without express and written permission is strictly prohibited.</footer>
+</body>
+</html> 
