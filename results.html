@@ -72,6 +72,7 @@
         .correct { color: green; }
         .wrong { color: red; }
         .highlight { font-weight: bold; }
+        .untouched { color: gray; font-style: italic; }
 
         button {
             background-color: #388E3C;
@@ -118,12 +119,11 @@
         nav ul li a:hover {
             background-color: #388E3C;
         }
-        .untouched { color: gray; font-style: italic; }
     </style>
 </head>
 <body>
     <img src="Smartech Educatation Computer Centre.png" style="border-radius:5px;" height="100px" width="300PX">
-    <img src="Typing Boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
+    <img src="Typing boy.png" style="border-radius:5px; float:right" class="fadeIn" height="100px" width="150PX">
     <nav>
         <ul>
             <li><a href="Home.html">Home</a></li>
@@ -140,16 +140,19 @@
 
    <script>
     // Function to highlight typed words only
-    function highlightTypedText(originalArray, typedArray) {
-        return typedArray.map((typedWord, i) => {
-            const originalWord = originalArray[i] || '';
-            if (originalWord === typedWord) {
-                return `<span class="correct">${typedWord}</span>`;
-            } else {
-                return `<span class="wrong">${typedWord}</span>`;
-            }
-        }).join(' ');
-    }
+  function highlightTypedText(originalArray, typedArray) {
+    return typedArray.map((typedWord, i) => {
+        const originalWord = originalArray[i] || '';
+        if (originalWord === typedWord) {
+            return `<span class="correct">${typedWord}</span>`;
+        } else if (typedWord === '') {
+            return `<span class="untouched">${originalWord}</span>`; 
+			
+        } else {
+            return `<span class="wrong">${typedWord}</span>`;
+        }
+    }).join(' ');
+}
 
     // Function to display results
     function displayResults() {
